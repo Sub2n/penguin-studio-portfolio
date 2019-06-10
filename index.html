@@ -314,7 +314,8 @@
     (function () {
       const $gridItems = document.querySelectorAll('.grid-item');
       const $buttons = document.querySelector('.button-group');
-
+      const $layerArea = document.querySelector('.layer_area');
+      
       window.addEventListener('scroll', function () {
         var scrollTop = this.scrollY;
         $gridItems.forEach((item) => {
@@ -335,15 +336,22 @@
         });
       });
 
-      $('.grid-item').click(function (e) {
-        $('.layer_area > .img').css({
-          'background-image': 'url("' + $(this).find('img').attr('src') + '")'
-        });
-        $('.youtube-link').attr('href');
-        $('.info-title').text($(this).find('.subject-bg > p').text());
-        $('body').addClass('layer-show');
-        $('#layer').addClass('layer-show');
+      document.querySelectorAll('.grid-item').forEach((item) => {
+        item.addEventListener('click', popUp);
       });
+
+      function popUp(e) {
+        console.log('??')
+        const thisItem = e.currentTarget;
+        $layerArea.firstElementChild.setAttribute('style', 
+          `background-image: url("${thisItem.firstElementChild.getAttribute('src')}")`
+        );
+        document.querySelector('.youtube-link').setAttribute('href', '#');
+        document.querySelector('.info-title').innerText = e.currentTarget.lastElementChild.firstElementChild.innerText;
+        document.querySelector('body').classList.add('layer-show');
+        document.querySelector('#layer').classList.add('layer-show');
+      }
+
       $('#layer-close').click(function (e) {
         $('body').removeClass('layer-show');
         $('#layer').removeClass('layer-show');
