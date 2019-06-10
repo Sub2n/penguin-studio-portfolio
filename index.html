@@ -311,17 +311,20 @@
       return result;
     }
 
-    $(function () {
+    (function () {
+      const $gridItems = document.querySelectorAll('.grid-item');
 
-      $(window).scroll(function () {
-        var scrollTop = $(this).scrollTop();
-        $('.grid-item').each(function () {
-          var aniStart = $(this).offset().top - 500;
+      window.addEventListener('scroll', function () {
+        var scrollTop = this.scrollY;
+        $gridItems.forEach((item) => {
+          var top = item.getBoundingClientRect().top + document.body.scrollTop;
+          var aniStart = top - 500;
           if (aniStart <= scrollTop) {
-            $(this).addClass('scroll');
+            item.classList.add('scroll');
           }
         });
       });
+      
       $('.button-group > button').click(function () {
         $('.grid-item').each(function () {
           if (!$(this).hasClass('scroll')) {
@@ -346,7 +349,7 @@
 
 
 
-    });
+    }());
   </script>
 </body>
 
