@@ -346,18 +346,16 @@
         $layerArea.firstElementChild.setAttribute('style', 
           `background-image: url("${thisItem.firstElementChild.getAttribute('src')}")`
         );
-        document.querySelector('.youtube-link').setAttribute('href', '#');
+        document.querySelector('.youtube-link').setAttribute('href', '');
         document.querySelector('.info-title').innerText = e.currentTarget.lastElementChild.firstElementChild.innerText;
         document.querySelector('body').classList.add('layer-show');
         document.querySelector('#layer').classList.add('layer-show');
       }
 
-      $('#layer-close').click(function (e) {
-        $('body').removeClass('layer-show');
-        $('#layer').removeClass('layer-show');
+      document.querySelector('#layer-close').addEventListener('click', (e) => {
+        document.querySelector('body').classList.remove('layer-show');
+        document.querySelector('#layer').classList.remove('layer-show');
       });
-
-
 
     }());
   </script>
