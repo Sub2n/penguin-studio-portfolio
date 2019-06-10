@@ -313,6 +313,7 @@
 
     (function () {
       const $gridItems = document.querySelectorAll('.grid-item');
+      const $buttons = document.querySelector('.button-group');
 
       window.addEventListener('scroll', function () {
         var scrollTop = this.scrollY;
@@ -324,11 +325,12 @@
           }
         });
       });
-      
-      $('.button-group > button').click(function () {
-        $('.grid-item').each(function () {
-          if (!$(this).hasClass('scroll')) {
-            $(this).addClass('scroll');
+
+      $buttons.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('button')) return;
+        $gridItems.forEach((item) => {
+          if (!item.classList.contains('scroll')) {
+            item.classList.add('scroll');
           }
         });
       });
